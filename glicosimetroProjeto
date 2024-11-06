@@ -1,0 +1,51 @@
+//Projeto realizado em prática da matéria de Programação Orientada a Objetos
+
+import java.util.Scanner;
+
+public class Glicosimetro {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Solicitar o valor de glicose ao usuário
+        System.out.println("Digite o valor de glicose em mg/dL:");
+        double glicose = scanner.nextDouble();
+
+        // Variável para armazenar a dose de insulina regular
+        double doseInsulina = calcularInsulina(glicose);
+
+        // Exibir a dose recomendada de insulina
+        if (doseInsulina > 0) {
+            System.out.println("A dose de insulina recomendada é: " + doseInsulina + " unidades.");
+        } else {
+            System.out.println("Nenhuma dose de insulina necessária.");
+        }
+
+        scanner.close();
+    }
+
+    // Método que calcula a quantidade de insulina a ser aplicada
+    public static double calcularInsulina(double glicose) {
+        double dose;
+
+        // Definindo regras para o cálculo da dose
+        if (glicose < 70) {
+            System.out.println("Glicose baixa! Trate com carboidratos, não aplique insulina.");
+            dose = 0;
+        } else if (glicose >= 70 && glicose <= 130) {
+            System.out.println("Glicose dentro do intervalo normal. Nenhuma insulina necessária.");
+            dose = 0;
+        } else if (glicose > 130 && glicose <= 200) {
+            System.out.println("Glicose levemente elevada. Dose leve de insulina necessária.");
+            dose = 2; // Exemplo de uma dose leve
+        } else if (glicose > 200 && glicose <= 300) {
+            System.out.println("Glicose elevada. Aplicar dose moderada de insulina.");
+            dose = 6; // Exemplo de dose moderada
+        } else {
+            System.out.println("Glicose muito elevada! Aplicar uma dose alta de insulina.");
+            dose = 8; // Exemplo de dose alta
+        }
+
+        return dose;
+    }
+}
